@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PidgePay · Go-To-Market Plan</title>
+  <title>PidgePay · Web3 Go-To-Market Plan</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -11,12 +11,23 @@
         extend: {
           colors: {
             brand: {
-              50:  '#eef2ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-              900: '#312e81',
+              50:  '#f0fdf4',
+              100: '#dcfce7',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            },
+            accent: {
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+            },
+            dark: {
+              900: '#0a0a0f',
+              800: '#111118',
+              700: '#1a1a26',
+              600: '#22223a',
             }
           }
         }
@@ -24,215 +35,273 @@
     }
   </script>
   <style>
-    /* Active nav link */
-    .nav-link.active { color: #6366f1; border-bottom: 2px solid #6366f1; }
-    /* Phase timeline connector */
-    .phase-card:not(:last-child)::after {
-      content: '';
-      display: block;
-      width: 2px;
-      height: 2rem;
-      background: #6366f1;
-      margin: 0 auto;
+    body { background-color: #0a0a0f; }
+    .nav-link.active { color: #22c55e; border-bottom: 2px solid #22c55e; }
+    .glow-green { box-shadow: 0 0 24px rgba(34,197,94,0.25); }
+    .glow-purple { box-shadow: 0 0 24px rgba(139,92,246,0.2); }
+    .gradient-text {
+      background: linear-gradient(135deg, #22c55e 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
+    .card-dark { background: #111118; border: 1px solid #22223a; }
+    .card-dark:hover { border-color: #22c55e44; }
+    .phase-line::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 32px;
+      bottom: -16px;
+      width: 2px;
+      background: linear-gradient(to bottom, #22c55e, #8b5cf6);
+    }
+    .chain-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1a1a26;
+      border: 1px solid #22223a;
+      border-radius: 9999px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+    .tag-green { background: rgba(34,197,94,0.1); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+    .tag-purple { background: rgba(139,92,246,0.1); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+    .tag-yellow { background: rgba(234,179,8,0.1); color: #facc15; border: 1px solid rgba(234,179,8,0.2); }
   </style>
 </head>
-<body class="bg-white text-slate-800 font-sans">
+<body class="text-slate-200 font-sans">
 
   <!-- NAV -->
-  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100 shadow-sm">
+  <nav class="sticky top-0 z-50 bg-dark-900/90 backdrop-blur border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-      <a href="#hero" class="font-bold text-brand-600 text-lg tracking-tight">PidgePay</a>
-      <ul class="hidden md:flex gap-6 text-sm text-slate-500 font-medium" id="nav-links">
-        <li><a href="#positioning"  class="nav-link hover:text-brand-600 pb-1 transition-colors">Positioning</a></li>
-        <li><a href="#market"       class="nav-link hover:text-brand-600 pb-1 transition-colors">Market</a></li>
-        <li><a href="#competitive"  class="nav-link hover:text-brand-600 pb-1 transition-colors">Competitive</a></li>
-        <li><a href="#phases"       class="nav-link hover:text-brand-600 pb-1 transition-colors">Phases</a></li>
-        <li><a href="#growth-loop"  class="nav-link hover:text-brand-600 pb-1 transition-colors">Growth Loop</a></li>
-        <li><a href="#metrics"      class="nav-link hover:text-brand-600 pb-1 transition-colors">Metrics</a></li>
-        <li><a href="#budget"       class="nav-link hover:text-brand-600 pb-1 transition-colors">Budget</a></li>
-        <li><a href="#regulatory"   class="nav-link hover:text-brand-600 pb-1 transition-colors">Regulatory</a></li>
+      <a href="#hero" class="font-bold text-brand-500 text-lg tracking-tight flex items-center gap-2">
+        <span class="text-xl">🐦</span> PidgePay
+      </a>
+      <ul class="hidden md:flex gap-6 text-xs text-slate-400 font-medium uppercase tracking-wider" id="nav-links">
+        <li><a href="#what"        class="nav-link hover:text-brand-500 pb-1 transition-colors">Product</a></li>
+        <li><a href="#positioning" class="nav-link hover:text-brand-500 pb-1 transition-colors">Positioning</a></li>
+        <li><a href="#audience"    class="nav-link hover:text-brand-500 pb-1 transition-colors">Audience</a></li>
+        <li><a href="#channels"    class="nav-link hover:text-brand-500 pb-1 transition-colors">Channels</a></li>
+        <li><a href="#phases"      class="nav-link hover:text-brand-500 pb-1 transition-colors">Phases</a></li>
+        <li><a href="#loop"        class="nav-link hover:text-brand-500 pb-1 transition-colors">Growth Loop</a></li>
+        <li><a href="#metrics"     class="nav-link hover:text-brand-500 pb-1 transition-colors">Metrics</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- HERO -->
-  <section id="hero" class="bg-slate-900 text-white min-h-[80vh] flex flex-col items-center justify-center px-6 text-center">
-    <div class="inline-flex items-center gap-2 bg-brand-600/20 text-brand-100 text-xs font-semibold px-3 py-1 rounded-full mb-6 tracking-widest uppercase border border-brand-600/30">
-      Go-To-Market Plan · 2026
-    </div>
-    <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
-      Pidgepay<span class="text-brand-500">.</span>
-    </h1>
-    <p class="text-xl md:text-2xl text-slate-300 max-w-xl mb-3">
-      The fastest way to split and settle.
-    </p>
-    <p class="text-sm text-slate-400 max-w-md">
-      A strategic go-to-market plan for PidgePay — drawing lessons from Venmo and Tikkie to build the next generation peer-to-peer payments platform.
-    </p>
-    <div class="mt-10 flex flex-wrap gap-4 justify-center">
-      <a href="#phases" class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">View GTM Phases</a>
-      <a href="#positioning" class="border border-slate-600 hover:border-brand-500 text-slate-300 hover:text-white px-6 py-3 rounded-lg font-semibold transition-colors">Explore the Plan</a>
-    </div>
-    <!-- Three key numbers -->
-    <div class="mt-16 grid grid-cols-3 gap-8 max-w-lg w-full border-t border-slate-700 pt-10">
-      <div>
-        <p class="text-3xl font-bold text-brand-500">4</p>
-        <p class="text-xs text-slate-400 mt-1">GTM Phases</p>
+  <section id="hero" class="min-h-screen flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
+    <!-- Background glow blobs -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-10" style="background: radial-gradient(circle, #22c55e 0%, transparent 70%);"></div>
+    <div class="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full opacity-5" style="background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);"></div>
+
+    <div class="relative z-10">
+      <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full mb-6 tracking-widest uppercase tag-green">
+        Go-To-Market Plan · Web3 Payments · 2026
       </div>
-      <div>
-        <p class="text-3xl font-bold text-brand-500">100K</p>
-        <p class="text-xs text-slate-400 mt-1">Target Users (Phase 2)</p>
+
+      <h1 class="text-6xl md:text-8xl font-extrabold mb-4 tracking-tight">
+        <span class="gradient-text">PidgePay</span>
+      </h1>
+
+      <p class="text-2xl md:text-3xl text-slate-300 max-w-2xl mb-3 font-light">
+        One link. Any chain. Paid in seconds.
+      </p>
+      <p class="text-sm text-slate-500 max-w-lg mb-10">
+        The crypto-native Tikkie — USDC payment requests via shareable links, no app needed, sub-$0.01 fees, across any chain.
+      </p>
+
+      <div class="flex flex-wrap gap-4 justify-center mb-14">
+        <a href="#phases" class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors glow-green">
+          View GTM Phases
+        </a>
+        <a href="#what" class="border border-dark-600 hover:border-brand-500 text-slate-300 hover:text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+          Explore the Plan
+        </a>
       </div>
-      <div>
-        <p class="text-3xl font-bold text-brand-500">&lt;30s</p>
-        <p class="text-xs text-slate-400 mt-1">Aha Moment Target</p>
+
+      <!-- Chains -->
+      <div class="flex flex-wrap gap-2 justify-center mb-10 max-w-2xl">
+        <span class="chain-pill">⟠ Ethereum</span>
+        <span class="chain-pill">🔵 Base</span>
+        <span class="chain-pill">◎ Solana</span>
+        <span class="chain-pill">🔺 Avalanche</span>
+        <span class="chain-pill">🟣 Polygon</span>
+        <span class="chain-pill">🔴 Optimism</span>
+        <span class="chain-pill">💙 Arbitrum</span>
+        <span class="chain-pill text-slate-500">+ any chain</span>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-8 max-w-lg w-full border-t border-dark-600 pt-10">
+        <div>
+          <p class="text-3xl font-bold text-brand-500">&lt;$0.01</p>
+          <p class="text-xs text-slate-500 mt-1">Per transaction fee</p>
+        </div>
+        <div>
+          <p class="text-3xl font-bold text-brand-500">USDC</p>
+          <p class="text-xs text-slate-500 mt-1">Stablecoin native</p>
+        </div>
+        <div>
+          <p class="text-3xl font-bold text-brand-500">0</p>
+          <p class="text-xs text-slate-500 mt-1">Apps to download</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS PIDGEPAY -->
+  <section id="what" class="py-20 px-6 bg-dark-800">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-extrabold mb-2">What is PidgePay?</h2>
+      <p class="text-slate-500 mb-10 max-w-xl text-sm">The product in plain terms — and why it matters for Web3 adoption.</p>
+
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-5">
+          <div class="card-dark rounded-2xl p-5 transition-colors">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-2xl">🔗</span>
+              <h3 class="font-bold">Create a payment link</h3>
+            </div>
+            <p class="text-sm text-slate-400">Enter an amount in USDC and an optional description. PidgePay generates a shareable link — no wallet address required from the sender.</p>
+          </div>
+          <div class="card-dark rounded-2xl p-5 transition-colors">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-2xl">📤</span>
+              <h3 class="font-bold">Share it anywhere</h3>
+            </div>
+            <p class="text-sm text-slate-400">Drop the link in WhatsApp, Telegram, Discord, X DMs — wherever your group lives. No app install for the recipient.</p>
+          </div>
+          <div class="card-dark rounded-2xl p-5 transition-colors">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-2xl">⚡</span>
+              <h3 class="font-bold">Get paid in seconds</h3>
+            </div>
+            <p class="text-sm text-slate-400">Recipient connects their Web3 wallet via RainbowKit, pays in USDC on their chain of choice. Settled instantly, fees under $0.01.</p>
+          </div>
+        </div>
+
+        <div class="card-dark rounded-2xl p-8 glow-green">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-4">The one-liner</p>
+          <blockquote class="text-2xl font-bold leading-relaxed">
+            "PidgePay is <span class="text-brand-500">Tikkie for crypto</span> — a shareable USDC payment request link that works across any chain, with no app and no friction."
+          </blockquote>
+          <p class="mt-4 text-xs text-slate-500">Tikkie (Netherlands) processes billions in P2P payments via WhatsApp links. PidgePay brings the same UX pattern to Web3 and stablecoins.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- POSITIONING -->
-  <section id="positioning" class="py-20 px-6 bg-white">
+  <section id="positioning" class="py-20 px-6 bg-dark-900">
     <div class="max-w-6xl mx-auto">
-      <h2 class="section-title text-3xl font-extrabold mb-2">Product Positioning</h2>
-      <p class="text-slate-500 mb-10 max-w-xl">How PidgePay fits alongside the two most successful P2P payment apps in history.</p>
-      <div class="grid md:grid-cols-3 gap-6">
+      <h2 class="text-3xl font-extrabold mb-2">Positioning</h2>
+      <p class="text-slate-500 mb-10 max-w-xl text-sm">PidgePay sits at the intersection of DeFi usability and everyday spending — a gap no one has cleanly owned.</p>
 
-        <!-- Venmo -->
-        <div class="rounded-2xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
+      <div class="grid md:grid-cols-3 gap-5 mb-10">
+
+        <!-- Tikkie -->
+        <div class="card-dark rounded-2xl p-6 transition-colors">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center">
-              <span class="text-sky-600 font-bold text-sm">V</span>
+            <div class="w-9 h-9 rounded-full bg-orange-900/40 border border-orange-700/40 flex items-center justify-center text-sm font-bold text-orange-400">T</div>
+            <div>
+              <h3 class="font-bold">Tikkie</h3>
+              <p class="text-xs text-slate-500">Web2 · Netherlands only</p>
             </div>
-            <h3 class="font-bold text-lg">Venmo</h3>
           </div>
-          <ul class="text-sm text-slate-600 space-y-2">
-            <li><span class="font-medium text-slate-800">Core use case:</span> Split bills, pay friends</li>
-            <li><span class="font-medium text-slate-800">Social layer:</span> Yes (public feed)</li>
-            <li><span class="font-medium text-slate-800">Geography:</span> USA</li>
-            <li><span class="font-medium text-slate-800">Monetisation:</span> Instant transfer fee, business payments</li>
-            <li><span class="font-medium text-slate-800">Weakness:</span> US-only; privacy concerns with social feed</li>
+          <ul class="text-xs text-slate-400 space-y-2">
+            <li>✓ Link-based payment requests</li>
+            <li>✓ WhatsApp native — viral by default</li>
+            <li>✓ ~40% non-user sign-up conversion</li>
+            <li class="text-slate-600">✗ Fiat only (EUR)</li>
+            <li class="text-slate-600">✗ Dutch banking rails only</li>
+            <li class="text-slate-600">✗ No self-custody or DeFi</li>
           </ul>
         </div>
 
-        <!-- Tikkie -->
-        <div class="rounded-2xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
+        <!-- Venmo -->
+        <div class="card-dark rounded-2xl p-6 transition-colors">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
-              <span class="text-orange-600 font-bold text-sm">T</span>
+            <div class="w-9 h-9 rounded-full bg-sky-900/40 border border-sky-700/40 flex items-center justify-center text-sm font-bold text-sky-400">V</div>
+            <div>
+              <h3 class="font-bold">Venmo</h3>
+              <p class="text-xs text-slate-500">Web2 · USA only</p>
             </div>
-            <h3 class="font-bold text-lg">Tikkie</h3>
           </div>
-          <ul class="text-sm text-slate-600 space-y-2">
-            <li><span class="font-medium text-slate-800">Core use case:</span> Request & split payments</li>
-            <li><span class="font-medium text-slate-800">Social layer:</span> Minimal</li>
-            <li><span class="font-medium text-slate-800">Geography:</span> Netherlands</li>
-            <li><span class="font-medium text-slate-800">Monetisation:</span> Free (ING-backed), then business tier</li>
-            <li><span class="font-medium text-slate-800">Weakness:</span> Netherlands-only; banking ecosystem lock-in</li>
+          <ul class="text-xs text-slate-400 space-y-2">
+            <li>✓ Dominant P2P brand in US</li>
+            <li>✓ Social feed / viral UX</li>
+            <li>✓ Large merchant network</li>
+            <li class="text-slate-600">✗ USD only, US bank required</li>
+            <li class="text-slate-600">✗ Privacy issues (public feed)</li>
+            <li class="text-slate-600">✗ No crypto rails</li>
           </ul>
         </div>
 
         <!-- PidgePay -->
-        <div class="rounded-2xl border-2 border-brand-500 bg-brand-50 p-6 shadow-md">
+        <div class="rounded-2xl p-6 border border-brand-500/40 glow-green transition-colors" style="background: rgba(34,197,94,0.04)">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-brand-600 flex items-center justify-center">
-              <span class="text-white font-bold text-sm">P</span>
+            <div class="w-9 h-9 rounded-full bg-brand-600/30 border border-brand-500/40 flex items-center justify-center text-sm">🐦</div>
+            <div>
+              <h3 class="font-bold text-brand-400">PidgePay</h3>
+              <p class="text-xs text-slate-500">Web3 · Any chain</p>
             </div>
-            <h3 class="font-bold text-lg text-brand-700">PidgePay</h3>
           </div>
-          <ul class="text-sm text-slate-600 space-y-2">
-            <li><span class="font-medium text-slate-800">Core use case:</span> P2P · split · settle</li>
-            <li><span class="font-medium text-slate-800">Social layer:</span> TBD</li>
-            <li><span class="font-medium text-slate-800">Geography:</span> Target market TBD</li>
-            <li><span class="font-medium text-slate-800">Monetisation:</span> Freemium → business tier</li>
-            <li><span class="font-medium text-slate-800">Opportunity:</span> Privacy-first, link-native, cross-border</li>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>✓ Link-based like Tikkie — zero friction</li>
+            <li>✓ USDC stablecoin — no volatility risk</li>
+            <li>✓ Any chain via RainbowKit</li>
+            <li>✓ No app, no account required to pay</li>
+            <li>✓ Sub-$0.01 fees</li>
+            <li>✓ Self-custody — you own your funds</li>
+            <li>✓ Global by default</li>
           </ul>
-          <div class="mt-4 bg-brand-600 text-white text-xs font-semibold px-3 py-2 rounded-lg text-center">
-            "No awkward IOUs."
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- TARGET MARKET -->
-  <section id="market" class="py-20 px-6 bg-slate-50">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-extrabold mb-2">Target Market</h2>
-      <p class="text-slate-500 mb-10 max-w-xl">Start hyper-local. Both Venmo and Tikkie proved that density beats breadth in early stages.</p>
-      <div class="grid md:grid-cols-2 gap-6">
-
-        <div class="bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-2 h-8 bg-brand-600 rounded-full"></div>
-            <h3 class="font-bold text-lg">Primary Segment</h3>
-          </div>
-          <ul class="text-sm text-slate-600 space-y-3">
-            <li class="flex items-start gap-2"><span class="text-brand-500 font-bold mt-0.5">→</span><span><strong>Age:</strong> 18–35, mobile-first digital natives</span></li>
-            <li class="flex items-start gap-2"><span class="text-brand-500 font-bold mt-0.5">→</span><span><strong>Behaviour:</strong> Frequent social spending — dining, travel, events, rent splitting</span></li>
-            <li class="flex items-start gap-2"><span class="text-brand-500 font-bold mt-0.5">→</span><span><strong>Tech profile:</strong> Already uses digital banking; no patience for friction</span></li>
-            <li class="flex items-start gap-2"><span class="text-brand-500 font-bold mt-0.5">→</span><span><strong>Pain point:</strong> Chasing people for money is awkward and slow</span></li>
-          </ul>
-        </div>
-
-        <div class="bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-2 h-8 bg-slate-400 rounded-full"></div>
-            <h3 class="font-bold text-lg">Secondary Segment</h3>
-          </div>
-          <ul class="text-sm text-slate-600 space-y-3">
-            <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">→</span><span>Small groups: clubs, flatmates, sports teams</span></li>
-            <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">→</span><span>Small businesses collecting informal payments</span></li>
-            <li class="flex items-start gap-2"><span class="text-slate-400 font-bold mt-0.5">→</span><span>Freelancers and gig workers requesting payment</span></li>
-          </ul>
-          <div class="mt-6 bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800">
-            <strong>Tikkie lesson:</strong> Monetise the secondary segment (businesses) while keeping P2P free for primary users.
+          <div class="mt-4 tag-green rounded-lg px-3 py-2 text-xs font-semibold text-center">
+            The gap Tikkie and Venmo can't fill
           </div>
         </div>
 
       </div>
 
-      <div class="mt-8 bg-brand-600 text-white rounded-2xl p-6">
-        <h3 class="font-bold text-lg mb-2">Geographic Focus Principle</h3>
-        <p class="text-sm text-brand-100">Pick <strong>one city or country first</strong>. Venmo launched in NYC and spread virally through college networks. Tikkie launched exclusively in the Netherlands via ING Bank distribution. Hyper-local density matters more than broad launch reach.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPETITIVE LANDSCAPE -->
-  <section id="competitive" class="py-20 px-6 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-extrabold mb-2">Competitive Landscape</h2>
-      <p class="text-slate-500 mb-10 max-w-xl">Every incumbent has a weakness. PidgePay's job is to exploit the gap.</p>
-      <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
-        <table class="w-full text-sm">
+      <!-- Competitive table -->
+      <h3 class="font-bold text-lg mb-4 text-slate-300">Crypto competitors</h3>
+      <div class="overflow-x-auto rounded-2xl border border-dark-600">
+        <table class="w-full text-xs">
           <thead>
-            <tr class="bg-slate-900 text-white">
-              <th class="px-6 py-4 text-left font-semibold">Competitor</th>
-              <th class="px-6 py-4 text-left font-semibold">Weakness PidgePay Can Exploit</th>
+            <tr class="border-b border-dark-600 text-slate-500 uppercase tracking-wider">
+              <th class="px-5 py-3 text-left">Competitor</th>
+              <th class="px-5 py-3 text-left">What they do</th>
+              <th class="px-5 py-3 text-left">Gap PidgePay fills</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-100">
-            <tr class="hover:bg-slate-50">
-              <td class="px-6 py-4 font-medium">Venmo</td>
-              <td class="px-6 py-4 text-slate-600">US-only; social feed is controversial privacy-wise</td>
+          <tbody class="divide-y divide-dark-600">
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-5 py-3 font-medium">Request Network</td>
+              <td class="px-5 py-3 text-slate-400">Crypto invoicing protocol</td>
+              <td class="px-5 py-3 text-slate-400">Too complex; built for B2B invoices not casual P2P splitting</td>
             </tr>
-            <tr class="hover:bg-slate-50">
-              <td class="px-6 py-4 font-medium">Tikkie</td>
-              <td class="px-6 py-4 text-slate-600">Netherlands-only; limited to ABN AMRO/ING ecosystem originally</td>
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-5 py-3 font-medium">Coinbase Pay</td>
+              <td class="px-5 py-3 text-slate-400">Fiat on-ramp / payments</td>
+              <td class="px-5 py-3 text-slate-400">Requires Coinbase account; no shareable link UX</td>
             </tr>
-            <tr class="hover:bg-slate-50">
-              <td class="px-6 py-4 font-medium">PayPal</td>
-              <td class="px-6 py-4 text-slate-600">Friction-heavy; perceived as commercial, not personal</td>
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-5 py-3 font-medium">Splits (Gnosis Safe)</td>
+              <td class="px-5 py-3 text-slate-400">Multi-sig group payments</td>
+              <td class="px-5 py-3 text-slate-400">Heavy onboarding; requires all parties to be existing crypto users</td>
             </tr>
-            <tr class="hover:bg-slate-50">
-              <td class="px-6 py-4 font-medium">Cash App</td>
-              <td class="px-6 py-4 text-slate-600">US-focused; less social/group-oriented</td>
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-5 py-3 font-medium">SplitPay</td>
+              <td class="px-5 py-3 text-slate-400">Bill splitting on Base</td>
+              <td class="px-5 py-3 text-slate-400">Single chain only; no link-share model</td>
             </tr>
-            <tr class="hover:bg-slate-50">
-              <td class="px-6 py-4 font-medium">Bank Transfers</td>
-              <td class="px-6 py-4 text-slate-600">Slow, no UX, require full account/IBAN numbers — no social layer</td>
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-5 py-3 font-medium">Raw wallet transfer</td>
+              <td class="px-5 py-3 text-slate-400">Send to address / ENS</td>
+              <td class="px-5 py-3 text-slate-400">Requires recipient to share wallet address; no UX, no description</td>
             </tr>
           </tbody>
         </table>
@@ -240,117 +309,243 @@
     </div>
   </section>
 
+  <!-- TARGET AUDIENCE -->
+  <section id="audience" class="py-20 px-6 bg-dark-800">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-extrabold mb-2">Target Audience</h2>
+      <p class="text-slate-500 mb-10 max-w-xl text-sm">Prioritise the Web3-native user first — they convert immediately. Then use them to pull in the crypto-curious mainstream.</p>
+
+      <div class="grid md:grid-cols-3 gap-5 mb-8">
+
+        <!-- Primary -->
+        <div class="card-dark rounded-2xl p-6 border-l-2 border-brand-500 transition-colors">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="tag-green text-xs font-bold px-2 py-1 rounded-full">Primary</span>
+          </div>
+          <h3 class="font-bold text-lg mb-3">Web3 Natives</h3>
+          <ul class="text-xs text-slate-400 space-y-2">
+            <li class="flex items-start gap-2"><span class="text-brand-500 mt-0.5">·</span> Active DeFi users, NFT collectors, DAO contributors</li>
+            <li class="flex items-start gap-2"><span class="text-brand-500 mt-0.5">·</span> Already hold USDC in self-custody wallets</li>
+            <li class="flex items-start gap-2"><span class="text-brand-500 mt-0.5">·</span> Split costs with other crypto-native friends</li>
+            <li class="flex items-start gap-2"><span class="text-brand-500 mt-0.5">·</span> Active on Discord, Telegram, X/Twitter</li>
+            <li class="flex items-start gap-2"><span class="text-brand-500 mt-0.5">·</span> Hate sharing wallet addresses in chat</li>
+          </ul>
+          <div class="mt-4 text-xs text-slate-500">
+            <span class="font-semibold text-slate-400">Where they spend:</span> ETHGlobal hackathons, DeFi Summer, NFT drops, DAO tooling communities
+          </div>
+        </div>
+
+        <!-- Secondary -->
+        <div class="card-dark rounded-2xl p-6 border-l-2 border-accent-500 transition-colors">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="tag-purple text-xs font-bold px-2 py-1 rounded-full">Secondary</span>
+          </div>
+          <h3 class="font-bold text-lg mb-3">Crypto-Curious Mainstream</h3>
+          <ul class="text-xs text-slate-400 space-y-2">
+            <li class="flex items-start gap-2"><span class="text-accent-500 mt-0.5">·</span> Own crypto on Coinbase, Binance, or Revolut</li>
+            <li class="flex items-start gap-2"><span class="text-accent-500 mt-0.5">·</span> Haven't used DeFi but open to it</li>
+            <li class="flex items-start gap-2"><span class="text-accent-500 mt-0.5">·</span> Pulled in by a payment link from a Web3-native friend</li>
+            <li class="flex items-start gap-2"><span class="text-accent-500 mt-0.5">·</span> Value low fees for international transfers</li>
+          </ul>
+          <div class="mt-4 text-xs text-slate-500">
+            <span class="font-semibold text-slate-400">Acquisition:</span> Inbound via shared payment links — the referral loop does the work
+          </div>
+        </div>
+
+        <!-- Tertiary -->
+        <div class="card-dark rounded-2xl p-6 border-l-2 border-yellow-500 transition-colors">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="tag-yellow text-xs font-bold px-2 py-1 rounded-full">Tertiary</span>
+          </div>
+          <h3 class="font-bold text-lg mb-3">Remote-First & Global Workers</h3>
+          <ul class="text-xs text-slate-400 space-y-2">
+            <li class="flex items-start gap-2"><span class="text-yellow-500 mt-0.5">·</span> International freelancers, nomads, remote teams</li>
+            <li class="flex items-start gap-2"><span class="text-yellow-500 mt-0.5">·</span> Frustrated by FX fees and slow SWIFT transfers</li>
+            <li class="flex items-start gap-2"><span class="text-yellow-500 mt-0.5">·</span> Split Airbnbs, co-working, group travel costs</li>
+            <li class="flex items-start gap-2"><span class="text-yellow-500 mt-0.5">·</span> USDC as a stable cross-border settlement layer</li>
+          </ul>
+          <div class="mt-4 text-xs text-slate-500">
+            <span class="font-semibold text-slate-400">Channels:</span> Remote work communities, nomad forums, Deel/Brex users
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Persona cards -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="card-dark rounded-2xl p-5 flex gap-4 transition-colors">
+          <div class="w-12 h-12 rounded-full bg-dark-600 flex items-center justify-center text-xl flex-shrink-0">🧑‍💻</div>
+          <div>
+            <p class="font-bold text-sm">Alex, 26 — DeFi trader</p>
+            <p class="text-xs text-slate-500 mt-1">"I went to ETHLondon with 6 friends. We split the Airbnb, food, and tickets. I paid it all upfront and sending everyone a PidgePay link was way easier than asking 6 people for their wallet addresses."</p>
+          </div>
+        </div>
+        <div class="card-dark rounded-2xl p-5 flex gap-4 transition-colors">
+          <div class="w-12 h-12 rounded-full bg-dark-600 flex items-center justify-center text-xl flex-shrink-0">🎨</div>
+          <div>
+            <p class="font-bold text-sm">Sara, 30 — NFT artist</p>
+            <p class="text-xs text-slate-500 mt-1">"My collectors are in 12 countries. When they owe me for commissions I just send a PidgePay link in Discord. They pay in USDC from whatever chain they're on. No bank account drama."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNELS -->
+  <section id="channels" class="py-20 px-6 bg-dark-900">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-extrabold mb-2">Distribution Channels</h2>
+      <p class="text-slate-500 mb-10 max-w-xl text-sm">Web3 communities don't respond to traditional ads. Go where the users already are — Discord, Telegram, hackathons, and crypto Twitter.</p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <div class="card-dark rounded-2xl p-5 transition-colors">
+          <div class="text-2xl mb-3">💬</div>
+          <h3 class="font-bold mb-2">Discord & Telegram</h3>
+          <p class="text-xs text-slate-400">Partner with DeFi protocols, NFT projects, and DAO communities. Offer PidgePay as the official payment tool for group expenses in their servers. Target communities: Uniswap, Aave, OpenSea, Gitcoin.</p>
+          <div class="mt-3 tag-green text-xs px-2 py-1 rounded-full inline-block">Phase 1 priority</div>
+        </div>
+
+        <div class="card-dark rounded-2xl p-5 transition-colors">
+          <div class="text-2xl mb-3">🛠️</div>
+          <h3 class="font-bold mb-2">Hackathons</h3>
+          <p class="text-xs text-slate-400">Sponsor ETHGlobal, Devcon, and regional hackathons. Developers at hackathons split costs constantly — hotel, food, transport. Become the default tool. Winners use it, then tweet about it.</p>
+          <div class="mt-3 tag-green text-xs px-2 py-1 rounded-full inline-block">Phase 1 priority</div>
+        </div>
+
+        <div class="card-dark rounded-2xl p-5 transition-colors">
+          <div class="text-2xl mb-3">🐦</div>
+          <h3 class="font-bold mb-2">Crypto Twitter / X</h3>
+          <p class="text-xs text-slate-400">KOL (Key Opinion Leader) partnerships with DeFi influencers. "Use PidgePay to split the bill at your next IRL meetup" content. Showcase real use cases — conference groups, NFT dinner splits.</p>
+          <div class="mt-3 tag-purple text-xs px-2 py-1 rounded-full inline-block">Phase 1–2</div>
+        </div>
+
+        <div class="card-dark rounded-2xl p-5 transition-colors">
+          <div class="text-2xl mb-3">🔗</div>
+          <h3 class="font-bold mb-2">Protocol Integrations</h3>
+          <p class="text-xs text-slate-400">Integrate PidgePay links into existing DeFi UIs — wallets, portfolio trackers, DAO tooling (Snapshot, Coordinape, Gnosis Safe). Embed the payment link flow natively.</p>
+          <div class="mt-3 tag-purple text-xs px-2 py-1 rounded-full inline-block">Phase 2</div>
+        </div>
+
+        <div class="card-dark rounded-2xl p-5 transition-colors">
+          <div class="text-2xl mb-3">🌐</div>
+          <h3 class="font-bold mb-2">Web3 Media & Content</h3>
+          <p class="text-xs text-slate-400">Bankless, The Defiant, DeFi Dad, Decrypt. Tutorial content: "How to split a group hotel bill using crypto in 30 seconds." SEO targeting: "send crypto to friend link", "USDC payment request".</p>
+          <div class="mt-3 tag-purple text-xs px-2 py-1 rounded-full inline-block">Phase 2</div>
+        </div>
+
+        <div class="card-dark rounded-2xl p-5 transition-colors">
+          <div class="text-2xl mb-3">⚙️</div>
+          <h3 class="font-bold mb-2">Wallet Partnerships</h3>
+          <p class="text-xs text-slate-400">Deep integration with Rainbow, MetaMask, Coinbase Wallet. "Request payment" as a native action inside the wallet app — not just an external link but built into the wallet UX.</p>
+          <div class="mt-3 tag-yellow text-xs px-2 py-1 rounded-full inline-block">Phase 3</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- GTM PHASES -->
-  <section id="phases" class="py-20 px-6 bg-slate-50">
+  <section id="phases" class="py-20 px-6 bg-dark-800">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-3xl font-extrabold mb-2">GTM Phases</h2>
-      <p class="text-slate-500 mb-12 max-w-xl">Four phases from zero to expansion — each with a clear goal and playbook.</p>
+      <p class="text-slate-500 mb-12 max-w-xl text-sm">Start with the crypto-native core, then expand outward into mainstream via the referral loop.</p>
 
-      <div class="space-y-0">
+      <div class="relative space-y-10">
 
         <!-- Phase 0 -->
-        <div class="phase-card relative pl-10">
-          <div class="absolute left-0 top-1 w-8 h-8 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">0</div>
-          <div class="bg-white rounded-2xl border border-slate-200 p-6 mb-2 hover:shadow-md transition-shadow">
-            <div class="flex flex-wrap items-center gap-3 mb-3">
-              <h3 class="font-bold text-lg">Pre-Launch</h3>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Months 1–2</span>
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">Goal: Validate PMF</span>
+        <div class="relative pl-12 phase-line">
+          <div class="absolute left-0 top-0 w-8 h-8 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10 glow-green">0</div>
+          <div class="card-dark rounded-2xl p-6 transition-colors">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <h3 class="font-bold text-lg">Seed Community</h3>
+              <span class="text-xs bg-dark-600 text-slate-400 px-2 py-1 rounded-full">Months 1–2</span>
+              <span class="tag-green text-xs px-2 py-1 rounded-full font-medium">Goal: 500 active Web3 users</span>
             </div>
-            <ul class="text-sm text-slate-600 space-y-2">
-              <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Recruit 200–500 beta users from one dense network (university, company, community)</li>
-              <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Define the "aha moment": user receives a payment request and settles in &lt;30 seconds</li>
-              <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Instrument analytics around that moment</li>
-              <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Establish regulatory/compliance baseline (PSD2, eMoney licence, or partner with licensed entity)</li>
+            <ul class="text-sm text-slate-400 space-y-2">
+              <li class="flex items-start gap-2"><span class="text-brand-500">·</span> Recruit beta users from one dense crypto community (e.g. a DAO, ETHGlobal alumni, a DeFi Discord)</li>
+              <li class="flex items-start gap-2"><span class="text-brand-500">·</span> Define aha moment: user receives a link, connects wallet, pays USDC in &lt;60 seconds</li>
+              <li class="flex items-start gap-2"><span class="text-brand-500">·</span> Instrument analytics on the link → wallet connect → payment funnel</li>
+              <li class="flex items-start gap-2"><span class="text-brand-500">·</span> Establish USDC multi-chain settlement reliability</li>
             </ul>
-            <div class="mt-4 bg-orange-50 border border-orange-200 rounded-lg p-3 text-xs text-orange-800">
-              <strong>Tikkie parallel:</strong> Launched inside ING's app — instant regulatory cover + millions of users. Seek a similar distribution partner (neobank, credit union, employer platform).
-            </div>
           </div>
         </div>
 
         <!-- Phase 1 -->
-        <div class="phase-card relative pl-10">
-          <div class="absolute left-0 top-1 w-8 h-8 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">1</div>
-          <div class="bg-white rounded-2xl border border-slate-200 p-6 mb-2 hover:shadow-md transition-shadow">
-            <div class="flex flex-wrap items-center gap-3 mb-3">
-              <h3 class="font-bold text-lg">Seed Launch</h3>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Months 3–6</span>
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">Goal: 10,000 active users</span>
+        <div class="relative pl-12 phase-line">
+          <div class="absolute left-0 top-0 w-8 h-8 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10 glow-green">1</div>
+          <div class="card-dark rounded-2xl p-6 transition-colors">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <h3 class="font-bold text-lg">Web3 Community Penetration</h3>
+              <span class="text-xs bg-dark-600 text-slate-400 px-2 py-1 rounded-full">Months 3–8</span>
+              <span class="tag-green text-xs px-2 py-1 rounded-full font-medium">Goal: 10,000 active users</span>
             </div>
             <div class="grid md:grid-cols-2 gap-4">
               <div>
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Acquisition</p>
-                <ul class="text-sm text-slate-600 space-y-1">
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Referral loop — every payment request is an acquisition event</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> University partnerships — student unions, sports clubs, housing</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Event sponsorship — pub quizzes, group dinners, sports leagues</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> One local tech/finance PR story</li>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Tactics</p>
+                <ul class="text-sm text-slate-400 space-y-1">
+                  <li class="flex items-start gap-2"><span class="text-brand-500">·</span> Sponsor 3–5 ETHGlobal / hackathon events — be the default expense tool</li>
+                  <li class="flex items-start gap-2"><span class="text-brand-500">·</span> Partnerships with 5–10 mid-size DAO communities</li>
+                  <li class="flex items-start gap-2"><span class="text-brand-500">·</span> KOL outreach: 10 crypto Twitter accounts with 50K+ followers</li>
+                  <li class="flex items-start gap-2"><span class="text-brand-500">·</span> Launch on Product Hunt targeting Web3 audience</li>
                 </ul>
               </div>
               <div>
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Retention</p>
-                <ul class="text-sm text-slate-600 space-y-1">
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Push notification when someone requests money from you</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Weekly summary: "You settled €X with 3 friends"</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Group payment / split features</li>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Retention levers</p>
+                <ul class="text-sm text-slate-400 space-y-1">
+                  <li class="flex items-start gap-2"><span class="text-brand-500">·</span> Push / email: "You have an outstanding payment request"</li>
+                  <li class="flex items-start gap-2"><span class="text-brand-500">·</span> On-chain payment history and receipts</li>
+                  <li class="flex items-start gap-2"><span class="text-brand-500">·</span> Group split flows (split one bill across multiple wallet addresses)</li>
                 </ul>
               </div>
-            </div>
-            <div class="mt-4 bg-brand-50 border border-brand-200 rounded-lg p-3 text-xs text-brand-800">
-              <strong>Key metric:</strong> Payment request → new user sign-up conversion rate. Target: <strong>&gt;25%</strong>. (Tikkie achieves ~40% on WhatsApp links.)
             </div>
           </div>
         </div>
 
         <!-- Phase 2 -->
-        <div class="phase-card relative pl-10">
-          <div class="absolute left-0 top-1 w-8 h-8 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">2</div>
-          <div class="bg-white rounded-2xl border border-slate-200 p-6 mb-2 hover:shadow-md transition-shadow">
-            <div class="flex flex-wrap items-center gap-3 mb-3">
-              <h3 class="font-bold text-lg">Growth</h3>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Months 7–18</span>
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">Goal: 100,000 users + monetisation</span>
+        <div class="relative pl-12 phase-line">
+          <div class="absolute left-0 top-0 w-8 h-8 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10 glow-purple">2</div>
+          <div class="card-dark rounded-2xl p-6 transition-colors">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <h3 class="font-bold text-lg">Mainstream Crypto Pull</h3>
+              <span class="text-xs bg-dark-600 text-slate-400 px-2 py-1 rounded-full">Months 9–18</span>
+              <span class="tag-purple text-xs px-2 py-1 rounded-full font-medium">Goal: 100,000 users + revenue</span>
             </div>
             <div class="grid md:grid-cols-2 gap-4">
               <div>
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Channels</p>
-                <ul class="text-sm text-slate-600 space-y-1">
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Paid social — Instagram, TikTok (18–30 demographic)</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> WhatsApp/iMessage deep links for shareable payment requests</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Bank/fintech partnerships for embedded distribution</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Content marketing: "How to split [X] fairly" SEO</li>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Growth</p>
+                <ul class="text-sm text-slate-400 space-y-1">
+                  <li class="flex items-start gap-2"><span class="text-accent-400">·</span> Viral referral: every payment link sent to a non-user is an acquisition event</li>
+                  <li class="flex items-start gap-2"><span class="text-accent-400">·</span> Integration with Rainbow, MetaMask, Coinbase Wallet</li>
+                  <li class="flex items-start gap-2"><span class="text-accent-400">·</span> Content marketing targeting "send crypto" and "USDC payment" queries</li>
                 </ul>
               </div>
               <div>
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Monetisation Tests</p>
-                <ul class="text-sm text-slate-600 space-y-1">
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Instant settlement fee (Venmo: 1.75%)</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Business tier for merchants/freelancers</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Premium features (scheduling, group wallets)</li>
-                  <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Float revenue on balances (regulatory-dependent)</li>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Monetisation</p>
+                <ul class="text-sm text-slate-400 space-y-1">
+                  <li class="flex items-start gap-2"><span class="text-accent-400">·</span> Pro tier: branding on links, payment analytics, bulk requests</li>
+                  <li class="flex items-start gap-2"><span class="text-accent-400">·</span> Business tier: freelancers, DAOs, merchants</li>
+                  <li class="flex items-start gap-2"><span class="text-accent-400">·</span> Small fee on high-volume users (keep casual P2P free)</li>
                 </ul>
               </div>
-            </div>
-            <div class="mt-4 bg-orange-50 border border-orange-200 rounded-lg p-3 text-xs text-orange-800">
-              <strong>Tikkie lesson:</strong> Monetise last, grow first. Tikkie was free for years while building trust, then introduced business tiers.
             </div>
           </div>
         </div>
 
         <!-- Phase 3 -->
-        <div class="relative pl-10">
-          <div class="absolute left-0 top-1 w-8 h-8 bg-brand-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">3</div>
-          <div class="bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
-            <div class="flex flex-wrap items-center gap-3 mb-3">
-              <h3 class="font-bold text-lg">Expansion</h3>
-              <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Month 18+</span>
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">Goal: Second geo or vertical</span>
+        <div class="relative pl-12">
+          <div class="absolute left-0 top-0 w-8 h-8 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10 glow-purple">3</div>
+          <div class="card-dark rounded-2xl p-6 transition-colors">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <h3 class="font-bold text-lg">Infrastructure & Expansion</h3>
+              <span class="text-xs bg-dark-600 text-slate-400 px-2 py-1 rounded-full">Month 18+</span>
+              <span class="tag-yellow text-xs px-2 py-1 rounded-full font-medium">Goal: Become the P2P payment primitive</span>
             </div>
-            <ul class="text-sm text-slate-600 space-y-2">
-              <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Enter a second city/country only after &gt;60% monthly retention in the first</li>
-              <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Consider business payments vertical (freelancers, markets, gig workers)</li>
-              <li class="flex items-start gap-2"><span class="text-brand-500 font-bold">·</span> Explore API/SDK for other apps to embed PidgePay as a payment rail</li>
+            <ul class="text-sm text-slate-400 space-y-2">
+              <li class="flex items-start gap-2"><span class="text-yellow-500">·</span> Open API / SDK so any wallet, dApp, or DAO tool can embed PidgePay payment requests</li>
+              <li class="flex items-start gap-2"><span class="text-yellow-500">·</span> Multi-token support beyond USDC (USDT, DAI, native tokens)</li>
+              <li class="flex items-start gap-2"><span class="text-yellow-500">·</span> On-ramp integration so non-crypto users can pay via card and recipient gets USDC</li>
+              <li class="flex items-start gap-2"><span class="text-yellow-500">·</span> Recurring payment links for subscriptions and retainers</li>
             </ul>
           </div>
         </div>
@@ -360,101 +555,122 @@
   </section>
 
   <!-- GROWTH LOOP -->
-  <section id="growth-loop" class="py-20 px-6 bg-white">
+  <section id="loop" class="py-20 px-6 bg-dark-900">
     <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-extrabold mb-2">The Growth Loop</h2>
-      <p class="text-slate-500 mb-10 max-w-xl">Every transaction is a distribution event. This is how Venmo and Tikkie grew with near-zero paid acquisition in early stages.</p>
+      <h2 class="text-3xl font-extrabold mb-2">The Web3 Growth Loop</h2>
+      <p class="text-slate-500 mb-10 max-w-xl text-sm">The same pull mechanic that made Tikkie viral — but native to crypto. Every payment request is a distribution event.</p>
 
-      <div class="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-0 flex-wrap">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-0 items-center mb-10">
 
-        <!-- Step 1 -->
-        <div class="flex flex-col md:flex-row items-center gap-0">
-          <div class="bg-brand-600 text-white rounded-2xl p-5 w-44 text-center shadow-lg">
-            <div class="text-2xl mb-2">👤</div>
-            <p class="font-bold text-sm">User A</p>
-            <p class="text-xs text-brand-200 mt-1">Splits a bill</p>
-          </div>
-          <div class="text-brand-500 font-bold text-2xl my-2 md:my-0 md:mx-3 rotate-90 md:rotate-0">→</div>
+        <div class="card-dark rounded-2xl p-5 text-center glow-green border-brand-500/30">
+          <div class="text-3xl mb-2">🧑‍💻</div>
+          <p class="font-bold text-sm text-brand-400">Web3 User</p>
+          <p class="text-xs text-slate-500 mt-1">Creates a USDC payment request link</p>
         </div>
 
-        <!-- Step 2 -->
-        <div class="flex flex-col md:flex-row items-center gap-0">
-          <div class="bg-slate-100 rounded-2xl p-5 w-44 text-center border border-slate-200">
-            <div class="text-2xl mb-2">🔗</div>
-            <p class="font-bold text-sm text-slate-700">Payment Link</p>
-            <p class="text-xs text-slate-500 mt-1">Sent via WhatsApp / SMS / email</p>
-          </div>
-          <div class="text-brand-500 font-bold text-2xl my-2 md:my-0 md:mx-3 rotate-90 md:rotate-0">→</div>
+        <div class="flex justify-center py-4 md:py-0">
+          <span class="text-brand-500 font-bold text-2xl md:rotate-0 rotate-90">→</span>
         </div>
 
-        <!-- Step 3 -->
-        <div class="flex flex-col md:flex-row items-center gap-0">
-          <div class="bg-slate-100 rounded-2xl p-5 w-44 text-center border border-slate-200">
-            <div class="text-2xl mb-2">👥</div>
-            <p class="font-bold text-sm text-slate-700">User B (new user)</p>
-            <p class="text-xs text-slate-500 mt-1">Signs up to pay</p>
-          </div>
-          <div class="text-brand-500 font-bold text-2xl my-2 md:my-0 md:mx-3 rotate-90 md:rotate-0">→</div>
+        <div class="card-dark rounded-2xl p-5 text-center">
+          <div class="text-3xl mb-2">📲</div>
+          <p class="font-bold text-sm">Link shared</p>
+          <p class="text-xs text-slate-500 mt-1">Discord, Telegram, WhatsApp, X DM</p>
         </div>
 
-        <!-- Step 4 -->
-        <div class="flex flex-col md:flex-row items-center gap-0">
-          <div class="bg-brand-600 text-white rounded-2xl p-5 w-44 text-center shadow-lg">
-            <div class="text-2xl mb-2">🔄</div>
-            <p class="font-bold text-sm">User B splits</p>
-            <p class="text-xs text-brand-200 mt-1">their next bill → new users added</p>
-          </div>
+        <div class="flex justify-center py-4 md:py-0">
+          <span class="text-brand-500 font-bold text-2xl md:rotate-0 rotate-90">→</span>
+        </div>
+
+        <div class="card-dark rounded-2xl p-5 text-center glow-green border-brand-500/30">
+          <div class="text-3xl mb-2">👛</div>
+          <p class="font-bold text-sm text-brand-400">New User</p>
+          <p class="text-xs text-slate-500 mt-1">Connects wallet, pays USDC → now uses PidgePay for their own bills</p>
         </div>
 
       </div>
 
-      <div class="mt-10 bg-slate-900 text-white rounded-2xl p-6 text-center">
-        <p class="text-sm text-slate-400 mb-2">Key insight</p>
-        <p class="text-xl font-bold">"The payment request link <em>is</em> the product."</p>
-        <p class="text-sm text-slate-400 mt-2">Everything else is infrastructure. Make sharing a request so frictionless that every user becomes a distribution channel automatically.</p>
+      <div class="card-dark rounded-2xl p-6 border border-brand-500/20 glow-green">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-3">The flywheel</p>
+        <p class="text-lg font-bold text-slate-200 mb-4">
+          The more Web3 users adopt PidgePay → the more payment links fly around crypto communities → the more crypto-curious mainstream users are pulled in → the bigger the network → the more valuable the product.
+        </p>
+        <div class="grid grid-cols-3 gap-4 border-t border-dark-600 pt-4 mt-4">
+          <div class="text-center">
+            <p class="text-2xl font-bold text-brand-500">~40%</p>
+            <p class="text-xs text-slate-500">Tikkie's link → sign-up rate (benchmark)</p>
+          </div>
+          <div class="text-center">
+            <p class="text-2xl font-bold text-brand-500">&lt;60s</p>
+            <p class="text-xs text-slate-500">Target time from link open to payment sent</p>
+          </div>
+          <div class="text-center">
+            <p class="text-2xl font-bold text-brand-500">$0</p>
+            <p class="text-xs text-slate-500">CAC when link → sign-up loop is working</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- METRICS -->
-  <section id="metrics" class="py-20 px-6 bg-slate-50">
+  <section id="metrics" class="py-20 px-6 bg-dark-800">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-3xl font-extrabold mb-2">Key Metrics</h2>
-      <p class="text-slate-500 mb-10 max-w-xl">What to measure, and what good looks like at each stage.</p>
-      <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+      <p class="text-slate-500 mb-10 max-w-xl text-sm">North Star: payment links created per week. Secondary: link → wallet connect conversion rate.</p>
+
+      <div class="overflow-x-auto rounded-2xl border border-dark-600">
         <table class="w-full text-sm">
           <thead>
-            <tr class="bg-slate-900 text-white">
-              <th class="px-6 py-4 text-left font-semibold">Metric</th>
-              <th class="px-6 py-4 text-center font-semibold">Phase 1 Target</th>
-              <th class="px-6 py-4 text-center font-semibold">Phase 2 Target</th>
+            <tr class="border-b border-dark-600 text-slate-500 text-xs uppercase tracking-wider">
+              <th class="px-6 py-4 text-left">Metric</th>
+              <th class="px-6 py-4 text-center">Phase 1</th>
+              <th class="px-6 py-4 text-center">Phase 2</th>
+              <th class="px-6 py-4 text-center">Notes</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-100">
-            <tr class="hover:bg-white">
-              <td class="px-6 py-4 font-medium">Monthly Active Users</td>
-              <td class="px-6 py-4 text-center"><span class="bg-brand-100 text-brand-700 px-2 py-1 rounded-md font-semibold">10,000</span></td>
-              <td class="px-6 py-4 text-center"><span class="bg-brand-600 text-white px-2 py-1 rounded-md font-semibold">100,000</span></td>
+          <tbody class="divide-y divide-dark-600">
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-6 py-4 font-medium">Monthly Active Wallets</td>
+              <td class="px-6 py-4 text-center"><span class="tag-green text-xs px-2 py-1 rounded-md font-bold">10,000</span></td>
+              <td class="px-6 py-4 text-center"><span class="bg-brand-600/20 text-brand-400 border border-brand-600/30 text-xs px-2 py-1 rounded-md font-bold">100,000</span></td>
+              <td class="px-6 py-4 text-xs text-slate-500">Unique wallets that send or receive</td>
             </tr>
-            <tr class="hover:bg-white">
-              <td class="px-6 py-4 font-medium">Request → Sign-up Conversion</td>
-              <td class="px-6 py-4 text-center"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-md font-semibold">&gt;25%</span></td>
-              <td class="px-6 py-4 text-center"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-md font-semibold">&gt;30%</span></td>
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-6 py-4 font-medium">Payment links created / month</td>
+              <td class="px-6 py-4 text-center"><span class="tag-green text-xs px-2 py-1 rounded-md font-bold">25,000</span></td>
+              <td class="px-6 py-4 text-center"><span class="bg-brand-600/20 text-brand-400 border border-brand-600/30 text-xs px-2 py-1 rounded-md font-bold">250,000</span></td>
+              <td class="px-6 py-4 text-xs text-slate-500">North Star metric</td>
             </tr>
-            <tr class="hover:bg-white">
-              <td class="px-6 py-4 font-medium">Monthly Retention</td>
-              <td class="px-6 py-4 text-center"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-md font-semibold">&gt;50%</span></td>
-              <td class="px-6 py-4 text-center"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-md font-semibold">&gt;60%</span></td>
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-6 py-4 font-medium">Link → wallet connect rate</td>
+              <td class="px-6 py-4 text-center"><span class="tag-green text-xs px-2 py-1 rounded-md font-bold">&gt;50%</span></td>
+              <td class="px-6 py-4 text-center"><span class="bg-brand-600/20 text-brand-400 border border-brand-600/30 text-xs px-2 py-1 rounded-md font-bold">&gt;60%</span></td>
+              <td class="px-6 py-4 text-xs text-slate-500">Key UX health signal</td>
             </tr>
-            <tr class="hover:bg-white">
-              <td class="px-6 py-4 font-medium">Payments per Active User / Month</td>
-              <td class="px-6 py-4 text-center"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded-md font-semibold">&gt;4</span></td>
-              <td class="px-6 py-4 text-center"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded-md font-semibold">&gt;6</span></td>
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-6 py-4 font-medium">Link → payment completed</td>
+              <td class="px-6 py-4 text-center"><span class="tag-green text-xs px-2 py-1 rounded-md font-bold">&gt;35%</span></td>
+              <td class="px-6 py-4 text-center"><span class="bg-brand-600/20 text-brand-400 border border-brand-600/30 text-xs px-2 py-1 rounded-md font-bold">&gt;45%</span></td>
+              <td class="px-6 py-4 text-xs text-slate-500">Tikkie benchmark ~40%</td>
             </tr>
-            <tr class="hover:bg-white">
-              <td class="px-6 py-4 font-medium">Time to First Payment</td>
-              <td class="px-6 py-4 text-center"><span class="bg-brand-100 text-brand-700 px-2 py-1 rounded-md font-semibold">&lt;5 min</span></td>
-              <td class="px-6 py-4 text-center"><span class="bg-brand-600 text-white px-2 py-1 rounded-md font-semibold">&lt;3 min</span></td>
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-6 py-4 font-medium">USDC volume settled / month</td>
+              <td class="px-6 py-4 text-center"><span class="tag-green text-xs px-2 py-1 rounded-md font-bold">$500K</span></td>
+              <td class="px-6 py-4 text-center"><span class="bg-brand-600/20 text-brand-400 border border-brand-600/30 text-xs px-2 py-1 rounded-md font-bold">$10M+</span></td>
+              <td class="px-6 py-4 text-xs text-slate-500">Monetisation lever at scale</td>
+            </tr>
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-6 py-4 font-medium">Monthly retention (wallet)</td>
+              <td class="px-6 py-4 text-center"><span class="tag-green text-xs px-2 py-1 rounded-md font-bold">&gt;45%</span></td>
+              <td class="px-6 py-4 text-center"><span class="bg-brand-600/20 text-brand-400 border border-brand-600/30 text-xs px-2 py-1 rounded-md font-bold">&gt;55%</span></td>
+              <td class="px-6 py-4 text-xs text-slate-500">Crypto apps typically lower than fintech</td>
+            </tr>
+            <tr class="hover:bg-dark-700 transition-colors">
+              <td class="px-6 py-4 font-medium">Time from link open → paid</td>
+              <td class="px-6 py-4 text-center"><span class="tag-green text-xs px-2 py-1 rounded-md font-bold">&lt;90s</span></td>
+              <td class="px-6 py-4 text-center"><span class="bg-brand-600/20 text-brand-400 border border-brand-600/30 text-xs px-2 py-1 rounded-md font-bold">&lt;60s</span></td>
+              <td class="px-6 py-4 text-xs text-slate-500">UX speed = conversion rate</td>
             </tr>
           </tbody>
         </table>
@@ -462,216 +678,60 @@
     </div>
   </section>
 
-  <!-- BUDGET PRIORITIES -->
-  <section id="budget" class="py-20 px-6 bg-white">
+  <!-- RISKS -->
+  <section class="py-20 px-6 bg-dark-900">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-extrabold mb-2">Budget Priorities</h2>
-      <p class="text-slate-500 mb-10 max-w-xl">Where to spend first at seed stage.</p>
-      <div class="grid md:grid-cols-3 gap-4">
-
-        <div class="bg-green-50 border border-green-200 rounded-2xl p-5">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
-            <span class="text-xs font-bold text-green-700 uppercase tracking-wide">High Priority</span>
-          </div>
-          <ul class="text-sm text-slate-700 space-y-3">
-            <li class="flex items-start gap-2">
-              <span class="text-green-500 mt-0.5">✓</span>
-              <div><strong>Referral / link sharing UX</strong><p class="text-slate-500 text-xs mt-0.5">The growth loop lives here</p></div>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-green-500 mt-0.5">✓</span>
-              <div><strong>Compliance / legal</strong><p class="text-slate-500 text-xs mt-0.5">Non-negotiable</p></div>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-green-500 mt-0.5">✓</span>
-              <div><strong>iOS + Android native apps</strong><p class="text-slate-500 text-xs mt-0.5">Friction kills P2P</p></div>
-            </li>
-          </ul>
+      <h2 class="text-3xl font-extrabold mb-2">Risks & Mitigations</h2>
+      <p class="text-slate-500 mb-10 max-w-xl text-sm">Web3 GTM has unique failure modes. Know them early.</p>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="card-dark rounded-2xl p-5 border-l-2 border-red-500 transition-colors">
+          <h3 class="font-bold mb-1 text-red-400">Wallet friction kills conversion</h3>
+          <p class="text-xs text-slate-400 mb-3">Most non-crypto users don't have a Web3 wallet. The link → payment funnel breaks if someone can't connect a wallet.</p>
+          <p class="text-xs text-brand-400 font-semibold">Mitigation: Add fiat on-ramp (Stripe, MoonPay) so recipients can pay by card and receiver gets USDC. Phase 2 priority.</p>
         </div>
-
-        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-            <span class="text-xs font-bold text-amber-700 uppercase tracking-wide">Medium Priority</span>
-          </div>
-          <ul class="text-sm text-slate-700 space-y-3">
-            <li class="flex items-start gap-2">
-              <span class="text-amber-500 mt-0.5">✓</span>
-              <div><strong>Brand / design</strong><p class="text-slate-500 text-xs mt-0.5">Trust matters in fintech</p></div>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-500 mt-0.5">✓</span>
-              <div><strong>Fraud detection</strong><p class="text-slate-500 text-xs mt-0.5">Friendly fraud is #1 P2P risk</p></div>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-500 mt-0.5">✓</span>
-              <div><strong>Analytics / instrumentation</strong><p class="text-slate-500 text-xs mt-0.5">Measure the aha moment</p></div>
-            </li>
-          </ul>
+        <div class="card-dark rounded-2xl p-5 border-l-2 border-red-500 transition-colors">
+          <h3 class="font-bold mb-1 text-red-400">Regulatory uncertainty</h3>
+          <p class="text-xs text-slate-400 mb-3">USDC payments may trigger MSB (Money Services Business) registration requirements in some jurisdictions.</p>
+          <p class="text-xs text-brand-400 font-semibold">Mitigation: Legal opinion in target markets before launch. Consider Circle's compliance infrastructure as a starting point.</p>
         </div>
-
-        <div class="bg-red-50 border border-red-200 rounded-2xl p-5">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
-            <span class="text-xs font-bold text-red-600 uppercase tracking-wide">Low Priority (Phase 1)</span>
-          </div>
-          <ul class="text-sm text-slate-700 space-y-3">
-            <li class="flex items-start gap-2">
-              <span class="text-red-400 mt-0.5">·</span>
-              <div><strong>Performance marketing</strong><p class="text-slate-500 text-xs mt-0.5">Organic first; paid social in Phase 2</p></div>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-red-400 mt-0.5">·</span>
-              <div><strong>International infrastructure</strong><p class="text-slate-500 text-xs mt-0.5">Wait until Phase 3</p></div>
-            </li>
-          </ul>
+        <div class="card-dark rounded-2xl p-5 border-l-2 border-yellow-500 transition-colors">
+          <h3 class="font-bold mb-1 text-yellow-400">Small addressable market (today)</h3>
+          <p class="text-xs text-slate-400 mb-3">Web3-native users are still a niche. Tikkie had millions of ING customers to launch into — PidgePay needs to build that density from scratch.</p>
+          <p class="text-xs text-brand-400 font-semibold">Mitigation: Partner with a wallet provider (Rainbow, Coinbase Wallet) for embedded distribution — the modern equivalent of the ING partnership.</p>
         </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- REGULATORY -->
-  <section id="regulatory" class="py-20 px-6 bg-slate-50">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-extrabold mb-2">Regulatory & Trust Checklist</h2>
-      <p class="text-slate-500 mb-10 max-w-xl">Non-negotiables before public launch. Get these wrong and you cannot operate.</p>
-
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white rounded-2xl border border-slate-200 p-6 space-y-3">
-          <div class="flex items-start gap-3">
-            <div class="w-6 h-6 rounded border-2 border-brand-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <div class="w-3 h-3 bg-brand-500 rounded-sm"></div>
-            </div>
-            <div>
-              <p class="font-medium text-sm">eMoney licence or Payment Institution licence</p>
-              <p class="text-xs text-slate-500">Jurisdiction-specific — essential before handling real money</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-6 h-6 rounded border-2 border-brand-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <div class="w-3 h-3 bg-brand-500 rounded-sm"></div>
-            </div>
-            <div>
-              <p class="font-medium text-sm">PSD2 / Open Banking (EU) or FinCEN (US)</p>
-              <p class="text-xs text-slate-500">Depends on target geography</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-6 h-6 rounded border-2 border-brand-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <div class="w-3 h-3 bg-brand-500 rounded-sm"></div>
-            </div>
-            <div>
-              <p class="font-medium text-sm">KYC / AML for onboarding</p>
-              <p class="text-xs text-slate-500">Know Your Customer checks required from day one</p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white rounded-2xl border border-slate-200 p-6 space-y-3">
-          <div class="flex items-start gap-3">
-            <div class="w-6 h-6 rounded border-2 border-brand-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <div class="w-3 h-3 bg-brand-500 rounded-sm"></div>
-            </div>
-            <div>
-              <p class="font-medium text-sm">Fraud detection from day one</p>
-              <p class="text-xs text-slate-500">Friendly fraud is the #1 P2P risk</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-6 h-6 rounded border-2 border-brand-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <div class="w-3 h-3 bg-brand-500 rounded-sm"></div>
-            </div>
-            <div>
-              <p class="font-medium text-sm">Clear dispute / chargeback policy</p>
-              <p class="text-xs text-slate-500">Published before launch — sets user expectations</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-6 h-6 rounded border-2 border-brand-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <div class="w-3 h-3 bg-brand-500 rounded-sm"></div>
-            </div>
-            <div>
-              <p class="font-medium text-sm">GDPR / data residency compliance</p>
-              <p class="text-xs text-slate-500">Privacy controls built correctly from the start</p>
-            </div>
-          </div>
+        <div class="card-dark rounded-2xl p-5 border-l-2 border-yellow-500 transition-colors">
+          <h3 class="font-bold mb-1 text-yellow-400">Chain proliferation complexity</h3>
+          <p class="text-xs text-slate-400 mb-3">"Any chain" is a UX and engineering challenge. Paying on the wrong chain or needing to bridge adds friction.</p>
+          <p class="text-xs text-brand-400 font-semibold">Mitigation: Default to Base or Polygon (low fees, USDC native) while supporting others. Use Circle's CCTP for cross-chain settlement.</p>
         </div>
       </div>
-
-      <div class="mt-6 bg-red-50 border border-red-200 rounded-2xl p-5 text-sm text-red-800">
-        <strong>Venmo warning:</strong> Venmo was fined $40M by the FTC in 2022 for misleading users about privacy settings. Build privacy controls correctly from the start — not as an afterthought.
-      </div>
-    </div>
-  </section>
-
-  <!-- OPEN QUESTIONS -->
-  <section class="py-20 px-6 bg-white">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-extrabold mb-2">Open Questions</h2>
-      <p class="text-slate-500 mb-10 max-w-xl">Resolve these before committing to a GTM timeline.</p>
-      <ol class="space-y-4">
-        <li class="flex items-start gap-4 bg-slate-50 rounded-2xl border border-slate-200 p-5">
-          <span class="flex-shrink-0 w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">1</span>
-          <div>
-            <p class="font-semibold">What geography is PidgePay targeting?</p>
-            <p class="text-sm text-slate-500 mt-1">This determines the regulatory path and the entire competitive set.</p>
-          </div>
-        </li>
-        <li class="flex items-start gap-4 bg-slate-50 rounded-2xl border border-slate-200 p-5">
-          <span class="flex-shrink-0 w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">2</span>
-          <div>
-            <p class="font-semibold">Is there a bank or fintech distribution partner?</p>
-            <p class="text-sm text-slate-500 mt-1">Changes the launch strategy significantly — instant access to existing users (Tikkie model).</p>
-          </div>
-        </li>
-        <li class="flex items-start gap-4 bg-slate-50 rounded-2xl border border-slate-200 p-5">
-          <span class="flex-shrink-0 w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">3</span>
-          <div>
-            <p class="font-semibold">What currency and banking rails?</p>
-            <p class="text-sm text-slate-500 mt-1">SEPA (EU), ACH (US), FPS (UK) — each has different speed, cost, and regulatory requirements.</p>
-          </div>
-        </li>
-        <li class="flex items-start gap-4 bg-slate-50 rounded-2xl border border-slate-200 p-5">
-          <span class="flex-shrink-0 w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">4</span>
-          <div>
-            <p class="font-semibold">Is there a social layer?</p>
-            <p class="text-sm text-slate-500 mt-1">Venmo-style public feed vs. private like Tikkie — a major product philosophy decision.</p>
-          </div>
-        </li>
-        <li class="flex items-start gap-4 bg-slate-50 rounded-2xl border border-slate-200 p-5">
-          <span class="flex-shrink-0 w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">5</span>
-          <div>
-            <p class="font-semibold">Who is the founding network?</p>
-            <p class="text-sm text-slate-500 mt-1">Every successful P2P app started with a dense seed community. Who are PidgePay's first 500 users?</p>
-          </div>
-        </li>
-      </ol>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-900 text-slate-400 py-10 px-6 text-center text-sm">
-    <p class="font-bold text-white text-lg mb-1">PidgePay</p>
-    <p class="mb-4">Go-To-Market Plan · 2026</p>
-    <p class="text-xs text-slate-500">Informed by the playbooks of Venmo and Tikkie · Built to win on referral loops</p>
+  <footer class="bg-dark-800 border-t border-dark-600 py-12 px-6 text-center">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <span class="text-2xl">🐦</span>
+      <p class="font-bold text-white text-xl">PidgePay</p>
+    </div>
+    <p class="text-sm text-slate-500 mb-1">Go-To-Market Plan · Web3 Edition · 2026</p>
+    <p class="text-xs text-slate-600">One link. Any chain. Paid in seconds.</p>
+    <p class="text-xs text-slate-700 mt-4">Informed by Tikkie & Venmo · Built for the onchain generation</p>
   </footer>
 
-  <!-- SCROLL NAV HIGHLIGHT -->
+  <!-- NAV SCROLL HIGHLIGHT -->
   <script>
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          navLinks.forEach(link => link.classList.remove('active'));
-          const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
+          navLinks.forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+          if (a) a.classList.add('active');
         }
       });
     }, { threshold: 0.4 });
-
     sections.forEach(s => observer.observe(s));
   </script>
 
